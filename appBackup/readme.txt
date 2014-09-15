@@ -1,3 +1,5 @@
+备份文件并上传到FTP服务器
+
 appBackup.sh: 运行这个脚本执行备份
 createList.sh: appBackup.sh调用createList.sh 生成需要备份的文件列表
 ftpPut.sh: appBackup.sh调用ftpPut.sh上传备份文件至FTP
