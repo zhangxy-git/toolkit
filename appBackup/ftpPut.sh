@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-Server="U2FsdGVkX18K3/h+y0SfGRzaRS7GnTpm6z/H3GaIsIDy26w="
-Identity="U2FsdGVkX1+m5nPVOvLSoKvgwiCTJPcx3dHICR+5"
+Server="U2FsdGVkX18eFxfBruvdvE6Qt/8S2Gicckd4tWQ="
+Identity="U2FsdGVkX18o4mlVvgoj5zSDQVYx3BQR"
 key=$1
 LocalFile=$2
 RemoteFile=$3
