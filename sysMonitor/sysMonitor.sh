@@ -65,6 +65,7 @@ Begin(){
         [[ -z "$temp_dir" ]] && eval temp_dir=$temp_dir_template
         [[ -z "$log_dir"  ]] && eval log_dir=$log_dir_template
         [[ -z "$lib_dir"  ]] && eval lib_dir=$lib_dir_template
+        [[ -d "$log_dir" ]] || mkdir -p "$log_dir"
 	local f
 	#取得lib下所有"类"
 	#例:func.sh 其中包含func.exec 与func.show两个方法 
