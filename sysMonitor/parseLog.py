@@ -129,19 +129,22 @@ class ConvertData:
 		r.update({data[0].split(":")[0]:data[0].split(":")[1]})
 		r.update({data[1].split(":")[0]:data[1].split(":")[1]})
 		return r
+def formatting():
+	p = ParseLog()
+	logfile = glob.glob(LOG_DIR + "/*.log")
+	for file in logfile :
+		type = re.findall("/([^/.]*).log$",file)
+		if not hasattr(ConvertData,type[0]):
+			continue
+		p.update(file,type[0])
+	
+	
+	OUT = open(OUTPUT_FILE,"w")
+	output_template = Template(template)
+	OUT.write("time," + template + "\n")
+	for i in sorted(ParseLog.time_label):
+		OUT.write(i + "," + re.sub("\$[^,]*","N/A",output_template.safe_substitute(p.get(i))) + "\n")
+	OUT.close()
 
-p = ParseLog()
-logfile = glob.glob(LOG_DIR + "/*.log")
-for file in logfile :
-	type = re.findall("/([^/.]*).log$",file)
-	if not hasattr(ConvertData,type[0]):
-		continue
-	p.update(file,type[0])
-
-
-OUT = open(OUTPUT_FILE,"w")
-output_template = Template(template)
-OUT.write("time," + template + "\n")
-for i in sorted(ParseLog.time_label):
-	OUT.write(i + "," + re.sub("\$[^,]*","N/A",output_template.safe_substitute(p.get(i))) + "\n")
-OUT.close()
+if __name__ == '__main__':
+	formatting()
