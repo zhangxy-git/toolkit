@@ -1,7 +1,4 @@
 #!/bin/bash
-# version 0.2
-# author zhzxy1/zh/ccb  m@zxy.pw
-#
 
 #脚本家目录，此处设为null则在Begin方法内自动获取
 home=

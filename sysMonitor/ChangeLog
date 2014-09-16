@@ -1,0 +1,12 @@
+# ChangeLog https://github.com/zhangxy-git/toolkit/tree/master/sysMonitor
+#
+
+    2014-09-16; <m@zxy.pw> parseLog.py:
+    修复了不同语言环境下sar日志格式不同导致的bug
+    修复了一个性能问题
+
+    2014-09-16; <m@zxy.pw> sysMonitor.sh:
+    如果log文件夹不存在,自动创建log文件夹
+    部分指标字体改为红色
+    修复了非utf-8环境下无法运行的问题
+

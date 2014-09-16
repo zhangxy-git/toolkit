@@ -28,6 +28,7 @@ class ParseLog:
 					d = ParseLog.result.get(time,{})
 					d.update(r)
 					ParseLog.result.update({time:d})
+					data = []
 				time = re.sub("^TIME:","",line)
 				ParseLog.time_label.update({time:""})
 				continue
@@ -88,7 +89,7 @@ class ConvertData:
 		k = []
 		cut = 0
                 for line in data:
-			line = re.sub("[^_a-zA-Z0-9 ]","",line)
+			line = re.sub("[^_a-zA-Z0-9 \t]","",line)
 			if not re.search("^[0-9]",line):
 				continue
 			l = line.split()
