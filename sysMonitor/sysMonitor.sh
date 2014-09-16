@@ -78,8 +78,7 @@ Begin(){
 		source $lib_dir/${class[$i]}.sh
 	done
 	#判断当前系统语言编码
-	echo $LANG | egrep -iq '(utf8|utf-8)'
-	if [[ $? -eq "0" ]] ;then
+	if $(echo $LANG | egrep -iq '(utf8|utf-8)') ;then
 		Encoding=utf-8
 	else
 		Encoding=gb18030
