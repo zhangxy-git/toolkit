@@ -4,8 +4,10 @@ free.exec(){
 }
 
 free.show(){
-	awk '/^Mem/{total=$3}
+	r=$(awk '/^Mem/{total=$3}
 		/^-/{used=$3}
 		/^Swap/{swap_total=$2;swap_used=$3}
-		END{printf ("Memory used: %.2f%%\nSwap used: %.2f%%\n",used/total*100,swap_used/swap_total*100)}'  $1
+		END{printf ("%.2f%%:%.2f%%",used/total*100,swap_used/swap_total*100)}'  $1)
+	echo -e "Memory used: \e[31m${r%:*}\033[0m"
+	echo -e "Swap used: \e[31m${r#*:}\033[0m"
 }
