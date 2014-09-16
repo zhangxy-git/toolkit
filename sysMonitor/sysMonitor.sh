@@ -31,7 +31,7 @@ Main(){
 	#监控命令控制方法，后台执行。
 	MonitorCtl &
 	#解决首次执行时数据文件尚未生成,ShowCtl报错问题
-	printf "Prepareing(about $((delay-$(date "+%s")%delay+5))s) ."
+	printf "Preparing(about $((delay-$(date "+%s")%delay+5))s) ."
 	while : ;do
 		local m=0
 		for ((i=0;i<${#class[@]};i++)) ;do
@@ -122,7 +122,8 @@ ShowCtl(){
 		done
 		echo
 		echo
-		MsgOut "5oyJQ1RSTCtD6YCA5Ye6Cg=="
+		MsgOut "5oyJQ1RSTCtD6YCA5Ye677yM5bm256Gu6K6k5ZCO5Y+w6L+b56iL5piv5ZCm5YWo6YOo6YCA5Ye6
+Cg=="
 		sleep 5
 	done
 

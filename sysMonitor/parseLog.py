@@ -5,8 +5,7 @@ import re
 from string import Template
 LOG_DIR = "log"
 OUTPUT_FILE = "result.csv"
-
-output_template = Template('$load,$id,$mem_pct,$ESTABLISHED,$TIME_WAIT,$CLOSE_WAIT,$FIN_WAIT,$vda_util,$vda_avgqusz,$vda_svctm,$eth0_txpcks,$eth0_txpcks,$eth0_rxbyts,$eth0_txbyts')
+template = '$load,$id,$mem_pct,$ESTABLISHED,$TIME_WAIT,$CLOSE_WAIT,$FIN_WAIT,$vda_util,$vda_avgqusz,$vda_svctm,$eth0_txpcks,$eth0_txpcks,$eth0_rxbyts,$eth0_txbyts'
 
 
 class ParseLog:
@@ -126,6 +125,8 @@ for file in logfile :
 	p.update(file,type[0])
 
 OUT = open(OUTPUT_FILE,"w")
+output_template = Template(template)
+OUT.write("time," + template + "\n")
 for i in sorted(ParseLog.time_label):
 	OUT.write(i + "," + re.sub("\$[^,]*","N/A",output_template.safe_substitute(p.get(i))) + "\n")
 OUT.close()
