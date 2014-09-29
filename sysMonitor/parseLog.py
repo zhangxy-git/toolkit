@@ -5,7 +5,7 @@ import re
 from string import Template
 LOG_DIR = "log"
 OUTPUT_FILE = "result.csv"
-template = '$load,$id,$mem_pct,$ESTABLISHED,$TIME_WAIT,$CLOSE_WAIT,$FIN_WAIT,$vda_util,$vda_avgqusz,$vda_svctm,$eth0_txpcks,$eth0_txpcks,$eth0_rxbyts,$eth0_txbyts,$processed,$idle'
+template = '$load,$id,$mem_pct,$ESTABLISHED,$TIME_WAIT,$CLOSE_WAIT,$FIN_WAIT1,$FIN_WAIT2,$vda_util,$vda_avgqusz,$vda_svctm,$eth0_txpcks,$eth0_txpcks,$eth0_rxbyts,$eth0_txbyts,$processed,$idle'
 
 
 class ParseLog:
@@ -22,7 +22,11 @@ class ParseLog:
 			line = line.rstrip("\n\r")
 			if line.startswith("TIME:") :
 				if len(data):
-					r = eval ("conver.%s(%s)" % (type,data))
+					try:
+						r = eval ("conver.%s(%s)" % (type,data))
+					except:
+						print  ' Syntax error , skip ' + type + '!'
+						return
 					for i in r.keys():
 						ParseLog.item_label.update({i:""})
 					d = ParseLog.result.get(time,{})
@@ -148,3 +152,4 @@ def formatting():
 
 if __name__ == '__main__':
 	formatting()
+
