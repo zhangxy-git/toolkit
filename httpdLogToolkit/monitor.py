@@ -3,13 +3,10 @@ import cPickle as p
 import time
 import os
 import re
-import sys
 import glob
 
 SEEK_CFG = 'seek.db'
 LOG_DIR = './'
-ip_count = {}
-result = {}
 ALARM = 10
 OUT = 'monitor.log'
 
@@ -37,7 +34,7 @@ class AnalyzeLog:
 		match = self.regex.match(line)
 		if match and not re.search("(css|js|png|gif|swf|jpg|jpeg)$",match.group(3)) :
 			k = match.group(1) + "|" + match.group(3) 
-			self.data.update({k:self.data.setdefault(k,0) + 1}) 
+			self.data.update({k:self.data.setdefault(k,0) + 1})
 
 	def dump(self):
 		return self.data
@@ -51,12 +48,12 @@ def main():
 	batch_today = str(time.strftime('%y%m%d',time.localtime(time.time() - 60)))
 	batch_yesterday= str(time.strftime('%y%m%d',time.localtime(time.time() - 86400 - 60)))
 	alarm_time = time.strftime('%Y-%m-%d %H:%M:%S')
-	s = open(SEEK_CFG,'r')
 	try:
+		s = open(SEEK_CFG,'r')
 		seek = p.load(s)								      
+		s.close()										     
 	except:
 		seek ={}									      
-	s.close()										     
 	for i in seek.keys():
 		if not re.search(batch_today + "|" + batch_yesterday,i):
 			del seek[i]
@@ -78,6 +75,7 @@ def main():
 			print ( str(data.get(k)) + "|" + k)
 	s = open ("seek.db","w")
 	p.dump(seek,s)
+	s.close()
 
 if __name__ == "__main__":
 	main()
